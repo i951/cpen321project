@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity">
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        change layout_height from match parent to wrap content (?), need click to scroll-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messagelist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            app:stackFromEnd="true" />
+
+        <View
+            android:layout_marginTop="5mm"
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_weight="3"
+                android:layout_width="wrap_content"
+                android:hint="your message"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="send" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".ChatActivity">-->
+
+
+<!--    <LinearLayout-->
+<!--        android:weightSum="3"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_weight="3"-->
+<!--            android:id="@+id/messagelist"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clipToPadding="false"-->
+<!--            android:scrollbars="vertical"/>-->
+<!--&lt;!&ndash;        <android.support.v7.widget.RecyclerView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="3"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/messagelist"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:clipToPadding="false"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:scrollbars="vertical"/>&ndash;&gt;-->
+<!--        <View-->
+<!--            android:layout_marginTop="5mm"-->
+<!--            android:id="@+id/separator"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"/>-->
+
+<!--        <LinearLayout-->
+<!--            android:weightSum="3"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <EditText-->
+<!--                android:id="@+id/message"-->
+<!--                android:layout_weight="3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:hint="your message"-->
+<!--                android:layout_height="match_parent" />-->
+
+<!--            <Button-->
+
+<!--                android:id="@+id/send"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="#00000000"-->
+<!--                android:text="send" />-->
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
