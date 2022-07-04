@@ -181,20 +181,24 @@ public class privateChatActivity extends AppCompatActivity {
                         JSONObject data = (JSONObject) args[0];
                         try {
                             String nickname = data.getString("senderNickname");
-                            String message = data.getString("message");
 
-                            Message m = new Message(nickname, message);
-                            MessageList.add(m);
+                            // only show the message if we're currently talking to that person
+                            if (nickname.equals(receiverName) ) {
+                                String message = data.getString("message");
 
+                                Message m = new Message(nickname, message);
+                                MessageList.add(m);
+
+                                // add the new updated list to the adapter
+                                // notify the adapter to update the recycler view
+                                // set the adapter for the recycler view
+                                chatBoxAdapter = new ChatBoxAdapter(MessageList);
+                                chatBoxAdapter.notifyDataSetChanged();
+                                myRecyclerView.setAdapter(chatBoxAdapter);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        // add the new updated list to the adapter
-                        // notify the adapter to update the recycler view
-                        // set the adapter for the recycler view
-                        chatBoxAdapter = new ChatBoxAdapter(MessageList);
-                        chatBoxAdapter.notifyDataSetChanged();
-                        myRecyclerView.setAdapter(chatBoxAdapter);
                     }
                 });
             }

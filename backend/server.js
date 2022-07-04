@@ -11,6 +11,7 @@ const io = new Server(server)
 const Message = require('./models/Message.js')
 const chatEngine = require('./controllers/chatEngine.js')
 
+const chatEngineRouter = require('./routes/chatEngine-routes.js')
 const port = "3010"
 
 server.listen(port, () => {
@@ -18,10 +19,15 @@ server.listen(port, () => {
 })
 
 app.get('/', (req, res) => {
-    res.send('Chat Server is running on port: ' + port)
+    res.send('Server is running on port: ' + port)
 })
 
-// routes
+// todo: separate routes for each module 
+// localhost:3031/chat/getConversationByGroupID/:groupID
+// localhost:3031/chat/getPrivateConversationByUserNames/:senderName/:receiverName
+// app.use('/chat', chatEngineRouter)
+
+// routes for chatEngine
 app.get('/getConversationByGroupID/:groupID', chatEngine.getConversationByGroupID)
 app.get('/getPrivateConversationByUserNames/:senderName/:receiverName', chatEngine.getPrivateConversationByUserNames)
 
