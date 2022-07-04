@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 public class CreateProfileActivity extends AppCompatActivity implements android.widget.AdapterView.OnItemSelectedListener {
     private Button ConfirmCreateProfileButton;
+    private Button PrivateMessageButton;
+
     public static String strNicknameToSave;
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -78,6 +80,34 @@ public class CreateProfileActivity extends AppCompatActivity implements android.
                 Intent chatIntent = new Intent(CreateProfileActivity.this, ChatActivity.class);
 //                chatIntent.putExtra(NICKNAME,nameField.getText().toString());
                 startActivity(chatIntent);
+
+//                Intent privateChatIntent = new Intent(CreateProfileActivity.this, privateChatActivity.class);
+////                chatIntent.putExtra(NICKNAME,nameField.getText().toString());
+//                startActivity(privateChatIntent);
+            }
+        });
+
+        PrivateMessageButton = findViewById(R.id.private_Message_Button_id);
+        PrivateMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("CreateProfileActivity", "go private message");
+
+//                Intent weatherIntent = new Intent(MainActivity.this, WeatherActivity.class);
+//                startActivity(weatherIntent);
+
+                // send the profile info to server for saving to database
+                EditText nameField = (EditText) findViewById(R.id.editTextTextPersonName);
+                strNicknameToSave = nameField.getText().toString();
+                Toast.makeText(getApplicationContext(), "Name: " + strNicknameToSave, Toast.LENGTH_SHORT).show();
+
+                Intent chatIntent = new Intent(CreateProfileActivity.this, privateChatActivity.class);
+//                chatIntent.putExtra(NICKNAME,nameField.getText().toString());
+                startActivity(chatIntent);
+
+//                Intent privateChatIntent = new Intent(CreateProfileActivity.this, privateChatActivity.class);
+////                chatIntent.putExtra(NICKNAME,nameField.getText().toString());
+//                startActivity(privateChatIntent);
             }
         });
 

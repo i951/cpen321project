@@ -7,7 +7,7 @@ const messageSchema = new mongoose.Schema(
       type: String,
       default: () => uuidv4().replace(/\-/g, ""),
     },
-    roomID: String,
+    groupID: String,
     postedByUser: String,
     message: mongoose.Schema.Types.Mixed,
   },
@@ -15,7 +15,7 @@ const messageSchema = new mongoose.Schema(
     timestamps: true,
     collection: "messages",
   }
-);
+)
 
 // export a model "Message" based on the messageSchema
-module.exports = mongoose.model("Message", messageSchema);
+module.exports = mongoose.model("Message", messageSchema)
