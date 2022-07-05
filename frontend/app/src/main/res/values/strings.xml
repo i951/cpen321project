@@ -19,6 +19,23 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
-
+    
     <string name="find_course_here">Please Enter Your Course Name</string>
+
+<!-- delete later -->
+    <string-array name="year_standing_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7+</item>
+    </string-array>
+
+    <string-array name="coop_standing_array">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
 </resources>
