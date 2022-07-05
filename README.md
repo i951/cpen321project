@@ -1,4 +1,6 @@
 # cpen321project
+this branch contains both usercourse (olivia's work) and interactions (front and backend)
+
 to start server do "npm start"
 
 dependencies:
