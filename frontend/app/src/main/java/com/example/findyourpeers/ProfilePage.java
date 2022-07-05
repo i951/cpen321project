@@ -70,7 +70,8 @@ public class ProfilePage extends AppCompatActivity {
                                 coopstatus = student.getString("coopStatus");
                                 yearstanding = student.getString("yearStanding");
                                 JSONArray coursesJSONArray= student.getJSONArray("courselist");
-                                //ArrayList<Object> courseArrayList = new ArrayList<Object>();
+
+                            //ArrayList<Object> courseArrayList = new ArrayList<Object>();
 
                                 if (coursesJSONArray != null) {
                                     for (int i=0;i<coursesJSONArray.length();i++){
@@ -129,7 +130,9 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent viewStudentIntent = new Intent(ProfilePage.this, StudentListPage.class);
+                viewStudentIntent.putExtra("currentUserID", userID);
                 viewStudentIntent.putExtra("coursename", courseNameSingle);
+                viewStudentIntent.putExtra("displayname", displayname);
                 startActivity(viewStudentIntent);
             }
         });

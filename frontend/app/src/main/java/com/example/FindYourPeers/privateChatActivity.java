@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,11 +35,12 @@ import io.socket.emitter.Emitter;
 public class privateChatActivity extends AppCompatActivity {
     private Socket socket;
     // enter Nickname = senderr for testing
-    private String Nickname;
+    private String senderName;
 
-    private String receiverName = "receiverr";
+//    private String receiverName = "receiverr";
+
     // 1 = receiver has blocked sender
-    private int isBlocked = 0;
+    private int isBlocked;// = 0;
 
     public RecyclerView myRecyclerView;
     public List<Message> MessageList;
@@ -53,6 +55,17 @@ public class privateChatActivity extends AppCompatActivity {
 
         //https://medium.com/@mohamedaymen.ourabi11/creating-a-realtime-chat-app-with-android-nodejs-and-socket-io-1050bc20c70
 
+        Intent privateChatIntent = getIntent();
+        isBlocked = privateChatIntent.getExtras().getInt("isBlocked");
+
+        String receiverName = privateChatIntent.getExtras().getString("receiverName");
+        senderName = getIntent().getExtras().
+                getString("senderName");
+        Log.d("privateChatActivity", "senderName: " + senderName);
+
+        Log.d("privateChatActivity", "receiverName: " + receiverName);
+
+
         messageTxt = (EditText) findViewById(R.id.message) ;
         send = (Button)findViewById(R.id.send);
 
@@ -66,7 +79,9 @@ public class privateChatActivity extends AppCompatActivity {
         myRecyclerView.setAdapter(chatBoxAdapter);
 
         // actual name to be gotten from users module
-        Nickname = CreateProfileActivity.strNicknameToSave;
+        // sender name, change
+//        senderName = CreateProfileActivity.strNicknameToSave;
+
 
         String groupID = "newGroupID";
 
@@ -80,7 +95,7 @@ public class privateChatActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 //        String url = "http://172.30.179.102:3010/getConversationByGroupID/" + groupID;
         String url = "http://" + serverIP + ":3010/getPrivateConversationByUserNames/"
-                + Nickname + "/" + receiverName;
+                + senderName + "/" + receiverName;
 
         // Request a string response from the provided URL.
         JsonObjectRequest jsonObjectRequest =
@@ -131,8 +146,8 @@ public class privateChatActivity extends AppCompatActivity {
 
             socket.connect();
 
-            socket.emit("joinPrivateChat", Nickname);
-            Log.d("privateChatActivity", "Joining private chat: " + Nickname);
+            socket.emit("joinPrivateChat", senderName);
+            Log.d("privateChatActivity", "Joining private chat: " + senderName);
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -151,12 +166,12 @@ public class privateChatActivity extends AppCompatActivity {
                             "Blocked", Toast.LENGTH_SHORT).show();
                 } else {
                     socket.emit("privateMessage",
-                            Nickname,
+                            senderName,
                             receiverName,
                             messageTxt.getText().toString(),
                             isBlocked);
 
-                    String nickname = Nickname;
+                    String nickname = senderName;
                     String message = messageTxt.getText().toString();
 
                     Message m = new Message(nickname, message);

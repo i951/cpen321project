@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class StudentListPage extends AppCompatActivity {
 
-    String displayName, userID;
+    String displayName, userID, currentUserDisplayName, currentUserID;
     public LinearLayout layoutStudentButton;
     TextView titleCourse;
 
@@ -35,6 +35,9 @@ public class StudentListPage extends AppCompatActivity {
 
         Intent intentStudentList = getIntent();
         String coursename = intentStudentList.getExtras().getString("coursename");
+        currentUserDisplayName = intentStudentList.getExtras().getString("displayname");
+        currentUserID = intentStudentList.getExtras().getString("currentUserID");
+
         layoutStudentButton= findViewById(R.id.layout_student_list);
         String coursenameNoSpace = coursename.replaceAll(" ", "");
         titleCourse = findViewById(R.id.student_list_title);
@@ -93,7 +96,9 @@ public class StudentListPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent viewStudentIntent = new Intent(StudentListPage.this, ViewOtherProfile.class);
+                viewStudentIntent.putExtra("currentUserID", currentUserID);
                 viewStudentIntent.putExtra("userID", userID);
+                viewStudentIntent.putExtra("currentUserDisplayName", currentUserDisplayName);
                 startActivity(viewStudentIntent);
             }
         });
