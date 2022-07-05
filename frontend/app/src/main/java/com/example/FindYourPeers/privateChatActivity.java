@@ -1,4 +1,4 @@
-package com.example.FindYourPeers;
+package com.example.findyourpeers;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -73,7 +73,8 @@ public class privateChatActivity extends AppCompatActivity {
         // wsl ip address
 //        String serverIP = "172.30.179.102";
         // local ip address
-        String serverIP = "192.168.1.72";
+//        String serverIP = "192.168.1.72";
+        String serverIP = "10.0.2.2";
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);

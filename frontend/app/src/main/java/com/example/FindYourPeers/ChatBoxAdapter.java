@@ -1,4 +1,4 @@
-package com.example.FindYourPeers;
+package com.example.findyourpeers;
 
 import android.view.LayoutInflater;
 import android.view.View;

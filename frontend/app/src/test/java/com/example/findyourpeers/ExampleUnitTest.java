@@ -1,4 +1,4 @@
-package com.example.findyourpeers;
+package com.example.FindYourPeers;
 
 import org.junit.Test;
 

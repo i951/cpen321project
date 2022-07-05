@@ -1,4 +1,4 @@
-package com.example.FindYourPeers;
+package com.example.findyourpeers;
 
 public class Message {
     private String nickname;

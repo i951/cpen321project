@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize a new RequestQueue instance
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String urltest = "http://10.0.2.2:8081/getuserprofile/test2";
+        String urltest = "http://10.0.2.2:3010/getuserprofile/test2";
 
         // Initialize a new JsonArrayRequest instance
       /*  JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

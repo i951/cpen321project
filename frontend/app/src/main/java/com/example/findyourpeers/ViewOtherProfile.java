@@ -35,7 +35,7 @@ public class ViewOtherProfile extends AppCompatActivity {
         otherYearTV = findViewById(R.id.other_year_standing);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String urlOther = "http://10.0.2.2:8081/getuserprofile/"+userID;
+        String urlOther = "http://10.0.2.2:3010/getuserprofile/"+userID;
 
         // Initialize a new JsonArrayRequest instance
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlOther,
