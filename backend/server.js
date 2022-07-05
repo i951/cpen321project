@@ -20,6 +20,9 @@ const chatEngine = require('./controllers/chatEngine.js')
 const chatEngineRouter = require('./routes/chatEngine-routes.js')
 const port = "3010"
 
+const userStore = require('./controllers/userStore.js')
+const courseManager = require('./controllers/courseManager.js')
+
 app.use(express.json())
 
 let dbUser, dbCourse, userCollection
@@ -37,7 +40,7 @@ app.get('/', (req, res) => {
     res.send('Server is running on port: ' + port)
 })
 //---------------------------------------------------------------------------------------
-app.get("/getuserprofile/:userID", (req, res) => {
+/*app.get("/getuserprofile/:userID", (req, res) => {
     userCollection.find({userID: req.params.userID}).toArray((err, userProfileResult) => {
       if (err) {
         console.error(err)
@@ -46,10 +49,12 @@ app.get("/getuserprofile/:userID", (req, res) => {
       }
       res.status(200).json(userProfileResult)
     })
-})
+})*/
+
+app.get("/getuserprofile/:userID", userStore.getUserProfile)
 
 
-app.get("/getstudentlist/:coursename", (req, res) => {
+/*app.get("/getstudentlist/:coursename", (req, res) => {
     var coursenamespace = req.params.coursename.substring(0,4)+ " "+req.params.coursename.substring(4,req.params.coursename.length)
     dbCourse.collection(coursenamespace).find({}).project({userID:1, displayName:1, _id:0}).toArray((err, resultstudent) => {
       if (err) {
@@ -59,9 +64,11 @@ app.get("/getstudentlist/:coursename", (req, res) => {
       }
       res.status(200).json(resultstudent)
     })
-})
+})*/
 
-app.get("/getcourselist/:userID", (req, res) => {
+app.get("/getstudentlist/:coursename", courseManager.getStudentList)
+
+/*app.get("/getcourselist/:userID", (req, res) => {
     userCollection.find({userID: req.params.userID}).project({courselist:1, _id:0}).toArray((err, resultcourse) => {
       if (err) {
         console.error(err)
@@ -70,9 +77,12 @@ app.get("/getcourselist/:userID", (req, res) => {
       }
       res.status(200).json(resultcourse)
     })
-})
+})*/
 
-app.post("/addusertocourse", async (req, res) => {
+app.get("/getcourselist/:userID", userStore.getCourseList)
+
+
+/*app.post("/addusertocourse", async (req, res) => {
     try{
         await dbCourse.collection(req.body.coursename).insertOne({
             displayName: req.body.displayName,
@@ -84,9 +94,11 @@ app.post("/addusertocourse", async (req, res) => {
         console.log(err)
         res.send(400).send(err)
     }
-})
+})*/
 
-app.post("/addcoursetouser", async (req, res) => {
+app.post("/addusertocourse", courseManager.addUserToCourse)
+
+/*app.post("/addcoursetouser", async (req, res) => {
     userCollection.updateOne({"userID": req.body.userID}, {$push:{"courselist":req.body.coursename}},(err, result)=>{
         if (err) {
             console.error(err)
@@ -95,9 +107,11 @@ app.post("/addcoursetouser", async (req, res) => {
         }
         res.status(200).json({ ok: true })
     });
-})
+})*/
 
-app.post("/createprofile", (req, res) => {
+app.post("/addcoursetouser", courseManager.addCourseToUser)
+
+/*app.post("/createprofile", (req, res) => {
     var courselistarr = [];
     var blockeruserarr = [];
   userCollection.insertOne(
@@ -118,9 +132,11 @@ app.post("/createprofile", (req, res) => {
       res.status(200).json({ ok: true })
     }
   )
-})
+})*/
 
-app.post("/block", (req, res) => {
+app.post("/createprofile", userStore.createProfile)
+
+/*app.post("/block", (req, res) => {
     userCollection.updateOne({"userID": req.body.userID}, {$push:{"blockedUser":req.body.blockedUserAdd}},(err, result)=>{
         if (err) {
             console.error(err)
@@ -129,9 +145,11 @@ app.post("/block", (req, res) => {
         }
         res.status(200).json({ ok: true })
     });
-})
+})*/
 
-app.delete("/deleteuserfromcourse/:userID/:coursename", async (req, res) => {
+app.post("/block", userStore.block)
+
+/*app.delete("/deleteuserfromcourse/:userID/:coursename", async (req, res) => {
     try{
       var coursenamespace = req.params.coursename.substring(0,4)+ " "+req.params.coursename.substring(4,req.params.coursename.length)
         await 
@@ -142,9 +160,11 @@ app.delete("/deleteuserfromcourse/:userID/:coursename", async (req, res) => {
         console.log(err)
         res.status(400).send(err)
     }
-})
+})*/
 
-app.post("/deletecoursefromuser", async (req, res) => {
+app.delete("/deleteuserfromcourse/:userID/:coursename", courseManager.deleteUserFromCourse)
+
+/*app.post("/deletecoursefromuser", async (req, res) => {
     try{
         await 
         userCollection.updateMany({"userID": req.body.userID},{$pull: {"courselist": req.body.coursename}})
@@ -154,7 +174,9 @@ app.post("/deletecoursefromuser", async (req, res) => {
         console.log(err)
         res.status(400).send(err)
     }
-})
+})*/
+
+app.post("/deletecoursefromuser", courseManager.deleteCourseFromUser)
 //---------------------------------------------------------------------------------------
 
 // todo: separate routes for each module 
