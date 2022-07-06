@@ -34,7 +34,7 @@ import io.socket.emitter.Emitter;
 
 public class ChatActivity extends AppCompatActivity {
     private Socket socket;
-    private String Nickname;
+    private String Nickname, groupID;
 
     public RecyclerView myRecyclerView;
     public List<Message> MessageList;
@@ -47,7 +47,10 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-    //https://medium.com/@mohamedaymen.ourabi11/creating-a-realtime-chat-app-with-android-nodejs-and-socket-io-1050bc20c70
+        Nickname = getIntent().getExtras().getString("displayname");
+        groupID = getIntent().getExtras().getString("coursename");
+
+        //https://medium.com/@mohamedaymen.ourabi11/creating-a-realtime-chat-app-with-android-nodejs-and-socket-io-1050bc20c70
 
         messageTxt = (EditText) findViewById(R.id.message) ;
         send = (Button)findViewById(R.id.send);
@@ -83,7 +86,7 @@ public class ChatActivity extends AppCompatActivity {
 //        }
 
         // actual name to be gotten from users module
-        Nickname = CreateProfileActivity.strNicknameToSave;
+//        Nickname = CreateProfileActivity.strNicknameToSave;
         // group message:
         //(String)getIntent().getExtras().getString(CreateProfileActivity.nameField);
 
@@ -93,7 +96,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // contains custom msgs
 //        String groupID = "testGroupID";
-        String groupID = "newGroupID";
+//        String groupID = "newGroupID";
 
         // wsl ip address
 //        String serverIP = "172.30.179.102";

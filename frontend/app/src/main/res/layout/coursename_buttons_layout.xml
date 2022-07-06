@@ -20,6 +20,14 @@
         android:backgroundTint="@color/ubc_darkblue"
         android:hint="Course name"></Button>
 
+    <ImageView
+        android:id="@+id/group_chat_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_baseline_chat_24"></ImageView>
 
     <ImageView
         android:id="@+id/delete_course_button"

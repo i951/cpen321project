@@ -41,12 +41,12 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
         Intent intentProfile = getIntent();
         String userID = intentProfile.getExtras().getString("userID");
+
         layoutCourseButton = findViewById(R.id.layout_button_list);
 
         displaynameTV = findViewById(R.id.textView_displayname);
         coopTV = findViewById(R.id.textview_coop);
         yearTV = findViewById(R.id.textView_yearstanding);
-
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String urltest = "http://10.0.2.2:3010/getuserprofile/"+userID;
@@ -134,6 +134,21 @@ public class ProfilePage extends AppCompatActivity {
                 viewStudentIntent.putExtra("coursename", courseNameSingle);
                 viewStudentIntent.putExtra("displayname", displayname);
                 startActivity(viewStudentIntent);
+            }
+        });
+
+        ImageView chatBtn = (ImageView)courseButtonView.findViewById(R.id.group_chat_button);
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chatIntent = new Intent(ProfilePage.this, ChatActivity.class);
+//                chatIntent.putExtra("currentUserID", userID);
+                chatIntent.putExtra("coursename", courseNameSingle); //groupid
+                chatIntent.putExtra("displayname", displayname); //nickname
+                startActivity(chatIntent);
+//                deleteCoursefromUser(courseNameSingle, userID);
+//                deleteUserfromCourse(courseNameSingle, userID);
+//                removeView(courseButtonView);
             }
         });
 
