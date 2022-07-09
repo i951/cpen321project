@@ -122,8 +122,7 @@ io.on('connection', (socket) => {
             }
 
             chatEngine.savePrivateMessageToDB(senderName, senderID, receiverName, receiverID, messageContent)
-            // firebase.testMessageSyntax();
-            firebase.sendPrivateMessageNotification(senderName, receiverID);
+            firebase.privateMessageNotification(senderName, receiverID);
 
             // emit the message to clients connected in the room
             let message = {
