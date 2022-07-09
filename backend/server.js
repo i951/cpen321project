@@ -20,6 +20,7 @@ const port = "3010"
 const userStore = require('./controllers/userStore.js')
 const courseManager = require('./controllers/courseManager.js')
 const chatEngine = require('./controllers/chatEngine.js')
+//const authUtils = require('./utils/authUtils.js')
 
 app.use(express.json())
 
@@ -51,6 +52,10 @@ app.get("/getuserprofile/:userID", userStore.getUserProfile)
 app.get("/getcourselist/:userID", userStore.getCourseList)
 app.post("/createprofile", userStore.createProfile)
 app.post("/block", userStore.block)
+app.post("/signup", userStore.signup)
+app.post("/confirmsignup", userStore.confirmSignUp)
+app.post("/login",userStore.login)
+app.post("/resendconfirmationcode", userStore.resendConfirmationCode)
 
 // routes for courseManager
 app.get("/getstudentlist/:coursename", courseManager.getStudentList)

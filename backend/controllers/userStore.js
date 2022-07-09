@@ -3,12 +3,64 @@ const uri = "mongodb://localhost:27017"
 const client = new MongoClient(uri)
 client.connect()
 
+const authUtils = require('../utils/authUtils.js')
+
 let dbUser, userCollection
 
 dbUser = client.db("user")
 userCollection = dbUser.collection("userCollection")
 
 module.exports ={
+    signup: async (req, res) => {
+      try {
+          let email = req.body.email;
+          let password = req.body.password;
+          let username = req.body.username;
+          authUtils.signUserUp(email,password,username)
+          return res.status(200).json({ success: true})
+      } catch (error) {
+          console.log(error)
+          return res.status(400).json({ success: false, error })
+      }
+      
+    },
+    confirmSignUp: async (req, res) => {
+      try {
+          let username = req.body.username;
+          let confirmationCode = req.body.confirmationCode;
+          authUtils.confrimSignUP(username,confirmationCode)
+          return res.status(200).json({ success: true})
+      } catch (error) {
+          console.log(error)
+          return res.status(400).json({ success: false, error })
+      }
+      
+    },
+
+   login: async (req, res) => {
+      try {
+          let username = req.body.username;
+          let password = req.body.password;
+          authUtils.login(username, password)
+          return res.status(200).json({ success: true})
+      } catch (error) {
+          console.log(error)
+          return res.status(400).json({ success: false, error })
+      }
+      
+    },
+
+    resendConfirmationCode: async (req, res) => {
+      try {
+          let username = req.body.username;
+          authUtils.resendConfrimationCode(username)
+          return res.status(200).json({ success: true})
+      } catch (error) {
+          console.log(error)
+          return res.status(400).json({ success: false, error })
+      }
+      
+    },
     getUserProfile: async (req, res) => {
         try {
             userCollection.find({userID: req.params.userID}).toArray((err, userProfileResult) => {
@@ -54,7 +106,7 @@ module.exports ={
           yearStanding: req.body.yearStanding,
           registrationToken: req.body.registrationToken,
           courselist: courselistarr,
-          blockedUser: blockeruserarr
+          blockedUser: blockeruserarr,
         },
         (err, result) => {
           if (err) {

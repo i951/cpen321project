@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/sign_up_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="Please enter your email, username, and password"
+        android:textColor="@color/ubc_darkblue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/email_address_signup"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_margin="15dp"
+        android:ems="10"
+        android:hint="Valid email address"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#757575" />
+
+    <EditText
+        android:id="@+id/username_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:digits="abcdefghijklmnopqrstuvwxyz01234567890"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textFilter"
+        android:textColorHint="#757575"
+        android:maxLength="15"/>
+
+    <TextView
+        android:id="@+id/username_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="clip_horizontal"
+        android:text="lowercase and number only, 15 characters max"
+        android:textColor="@color/ubc_darkblue"
+        android:textSize="10sp" />
+
+    <EditText
+        android:id="@+id/password_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_margin="15dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#757575" />
+
+    <Button
+        android:id="@+id/verify_email_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:backgroundTint="@color/ubc_darkblue"
+        android:text="Get Verification Code" />
+
+</LinearLayout>

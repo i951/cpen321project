@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".EnterCode">
+
+    <TextView
+        android:id="@+id/verif_code_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24sp"
+        android:layout_marginTop="100sp"
+        android:gravity="center"
+        android:text="Please check your email and enter the verification code below"
+        android:textColor="@color/ubc_darkblue"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/verification_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Verification Code"
+        android:inputType="text"
+        android:textColorHint="#78909C"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/verify_code_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/ubc_darkblue"
+        android:text="Verify My Code" />
+
+    <Button
+        android:id="@+id/resend_code_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/ubc_lightblue"
+        android:text="Resend Code" />
+</LinearLayout>
