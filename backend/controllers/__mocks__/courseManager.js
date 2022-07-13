@@ -66,18 +66,6 @@ module.exports = {
     //         res.status(400).send(err)
     //     }
     // }, 
-    // addUserToCourse:  async (req, res) => {
-    //     let displayName = req.body.displayName
-    //     let userID = req.body.userID
-
-    //     if (displayName && userID) {
-    //         res.status = 200
-    //         res.json = "User added successfully\n"
-    //     } else {
-    //         res.status = 400
-    //         res.json = "error"
-    //     }
-    // }, 
     addUserToCourse:  async (req, res) => {
         let displayName = req.body.displayName
         let userID = req.body.userID
