@@ -5,14 +5,16 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "testing" ]
+    branches: [ "**" ]
   pull_request:
-    branches: [ "testing" ]
+    branches: [ "**" ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
+
+    env:
+      working-directory: ./backend
 
     strategy:
       matrix:
@@ -20,14 +22,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    
-    - run: cd backend
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+        cache-dependency-path: ./backend/package-lock.json
+    - name: npm ci 
+      working-directory: ${{ env.working-directory }}
+      run: npm ci
+    - name: npm test   
+      working-directory: ${{ env.working-directory }}
+      run: npm test
+
