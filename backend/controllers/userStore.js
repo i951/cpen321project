@@ -162,23 +162,38 @@ module.exports = {
         });
     },
 
+    unblock: async (req, res) => {
+        userCollection.updateOne({ "userID": req.params.userID }, { $pull: { "blockedUsers": req.params.userIDtoDelete } }, (err, result) => {
+            if (err) {
+                console.error(err)
+                res.status(400).send(err)
+            } else {
+                res.status(200).json({ ok: true })
+            }
+        });
+    },
+
     getDisplayNameByUserIDfromDB: getDisplayNameByUserIDfromDB,
 
     getDisplayNameByUserID: async function(req, res) {
         let retrievedDisplayName = await getDisplayNameByUserIDfromDB(req.params.userID)
+        console.log("retrievedDisplayName: " + retrievedDisplayName)
         res.status(200).json({retrievedDisplayName})
     },
 
 }
 
 async function getDisplayNameByUserIDfromDB(userID) {
-    console.log("----------------------------------")
+    console.log("----------------getDisplayNameByUserIDfromDB------------------")
+    console.log("userID: " + userID)
 
     let retrievedUser = await userCollection.findOne({ userID })
-    console.log("retrievedUser: " + retrievedUser.displayName)
-    console.log("----------------------------------")
-    return retrievedUser.displayName
+    if (retrievedUser) {
+        console.log("retrievedUser: " + retrievedUser.displayName)
+        console.log("---------------end of getDisplayNameByUserIDfromDB-------------------")
+        return retrievedUser.displayName  
+    } else {
+        console.log("retrievedUser: not found");
+        console.log("---------------end of getDisplayNameByUserIDfromDB-------------------")
+    }
 }
-
-
-

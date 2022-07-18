@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,17 +24,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class ProfilePage extends AppCompatActivity {
-
     private TextView displaynameTV;
     private TextView coopTV;
     private TextView yearTV;
     private String displayname;
     public LinearLayout layoutCourseButton;
-    ArrayList<String> blockedUserNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +40,6 @@ public class ProfilePage extends AppCompatActivity {
         Intent intentProfile = getIntent();
         String userID = intentProfile.getExtras().getString("userID");
         ArrayList<String> courseListAL = new ArrayList<>();
-        ArrayList<String> blockedUsers = new ArrayList<>();
-        blockedUserNames = new ArrayList<>();
 
         layoutCourseButton = findViewById(R.id.layout_button_list);
 
@@ -56,28 +50,18 @@ public class ProfilePage extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String urltest = "http://10.0.2.2:3010/getuserprofile/" + userID;
 
-        // Initialize a new JsonArrayRequest instance
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urltest,
                 null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // Do something with response
-                        //mTextView.setText(response.toString());
-
-                        // Process the JSON
                         try {
-                            // Get current json object
                             JSONObject student = response.getJSONObject(0);
 
-                            // Get the current student (json object) data
                             displayname = student.getString("displayName");
                             String coopstatus = student.getString("coopStatus");
                             String yearstanding = student.getString("yearStanding");
                             JSONArray coursesJSONArray = student.getJSONArray("courselist");
-                            JSONArray blockedUsersJSONArray = student.getJSONArray("blockedUsers");
-
-                            //ArrayList<Object> courseArrayList = new ArrayList<Object>();
 
                             if (coursesJSONArray != null) {
                                 for (int i = 0; i < coursesJSONArray.length(); i++) {
@@ -86,13 +70,6 @@ public class ProfilePage extends AppCompatActivity {
                                     addCourseButton(courseNameSingle, userID);
                                     courseListAL.add(courseNameSingle);
                                 }
-                            }
-
-                            for (int i = 0; i < blockedUsersJSONArray.length(); i++) {
-                                String nextBlockedUserID = blockedUsersJSONArray.getString(i);
-                                blockedUsers.add(nextBlockedUserID);
-                                makeDisplayNameGetRequest(requestQueue, nextBlockedUserID);
-
                             }
 
                             // Display the formatted json data in text view
@@ -105,7 +82,6 @@ public class ProfilePage extends AppCompatActivity {
                             }
                             yearTV.setText("I am in year " + yearstanding);
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -114,24 +90,22 @@ public class ProfilePage extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Do something when error occurred
-                        Toast.makeText(ProfilePage.this, "Something went wrong in getting data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfilePage.this,
+                                "Something went wrong in getting data", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
 
-        // Add JsonArrayRequest to the RequestQueue
         requestQueue.add(jsonArrayRequest);
 
         Button seeBlockedUsersBtn = (Button) findViewById(R.id.blocked_users_button);
         seeBlockedUsersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent seeBlockedUsersIntent = new Intent(ProfilePage.this, BlockedUsersPage.class);
+                Intent seeBlockedUsersIntent =
+                        new Intent(ProfilePage.this, BlockedUsersPage.class);
                 seeBlockedUsersIntent.putExtra("userID", userID);
                 seeBlockedUsersIntent.putExtra("displayName", displayname);
-                seeBlockedUsersIntent.putExtra("blockedUsers", blockedUsers);
-                seeBlockedUsersIntent.putExtra("blockedUserNames", blockedUserNames);
                 startActivity(seeBlockedUsersIntent);
             }
         });
@@ -170,7 +144,7 @@ public class ProfilePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent chatIntent = new Intent(ProfilePage.this, ChatActivity.class);
-                chatIntent.putExtra("coursename", courseNameSingle); //groupid
+                chatIntent.putExtra("coursename", courseNameSingle);
                 chatIntent.putExtra("userID", userID); //userID
                 chatIntent.putExtra("displayname", displayname); //nickname
                 startActivity(chatIntent);
@@ -246,44 +220,5 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
-
-    }
-
-    private void makeDisplayNameGetRequest(RequestQueue requestQueue, String userID) {
-        String requestUrl = "http://10.0.2.2:3010/getDisplayNameByUserID/" + userID;
-        JsonObjectRequest displayNameRequest = new JsonObjectRequest(Request.Method.GET, requestUrl,
-                null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                String retrievedDisplayName = null;
-                try {
-                    retrievedDisplayName = response.getString("retrievedDisplayName");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.d("ProfilePage", " Retrieved display name: " +
-                        retrievedDisplayName);
-                blockedUserNames.add(retrievedDisplayName);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(BrowseCourse.this, "Something went wrong in getting data", Toast.LENGTH_SHORT).show();
-                //String body;
-                //get status code here
-                //String statusCode = String.valueOf(error.networkResponse.statusCode);
-                //get response body and parse with appropriate encoding
-                if (error.networkResponse != null) {
-                    try {
-                        String body = new String(error.networkResponse.data, "UTF-8");
-                        Log.d("ProfilePage error: ", body);
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-        );
-        requestQueue.add(displayNameRequest);
     }
 }

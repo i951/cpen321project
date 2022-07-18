@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewBlockedProfile">
+
+    <TextView
+        android:id="@+id/other_display_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:gravity="center"
+        android:textColor="@color/ubc_darkblue"
+        android:textSize="34sp" />
+
+    <TextView
+        android:id="@+id/other_year_standing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:gravity="center"
+        android:textColor="@color/ubc_darkblue"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/other_coop_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:gravity="center"
+        android:textColor="@color/ubc_darkblue"
+        android:textSize="20sp"/>
+
+
+    <Button
+        android:id="@+id/button_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Message"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@color/ubc_darkblue"
+        ></Button>
+
+    <Button
+        android:id="@+id/button_unblock"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Unblock"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@color/ubc_darkblue"
+        ></Button>
+
+</LinearLayout>

@@ -15,8 +15,8 @@
         android:layout_marginBottom="20sp"
         android:gravity="center"
         android:textColor="@color/ubc_darkblue"
-        android:textSize="34sp"
-        android:text="Blocked users"/>
+        android:textSize="24sp"
+        android:text="Blocked Users"/>
 
     <ScrollView
         android:id="@+id/scroll_view_sl"

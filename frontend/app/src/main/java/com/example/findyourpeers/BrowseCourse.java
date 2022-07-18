@@ -69,11 +69,6 @@ public class BrowseCourse extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(BrowseCourse.this, "Something went wrong in getting data", Toast.LENGTH_SHORT).show();
-                //String body;
-                //get status code here
-                //String statusCode = String.valueOf(error.networkResponse.statusCode);
-                //get response body and parse with appropriate encoding
                 if(error.networkResponse.data!=null) {
                     try {
                         String body = new String(error.networkResponse.data,"UTF-8");
