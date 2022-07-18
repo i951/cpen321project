@@ -59,7 +59,7 @@ public class LoginPage extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        String url = "http://34.130.14.116:3010/login";
+        String url = "http://10.0.2.2:3010/login";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, loginData,
                 new Response.Listener<JSONObject>() {
                     @Override

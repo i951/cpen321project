@@ -80,7 +80,7 @@ module.exports = {
         // }
         // )
     },
-// displayName:0, userID:1, coopStatus:0, yearStanding:0, registrationToken:1, courselist:0, blockedUser:0
+// displayName:0, userID:1, coopStatus:0, yearStanding:0, registrationToken:1, courselist:0, blockedUsers:0
 
     privateMessageNotification: async (senderName, receiverID) => {
         let resultstudent = await userCollection.findOne({ userID: receiverID }) 

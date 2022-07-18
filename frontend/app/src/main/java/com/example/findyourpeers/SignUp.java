@@ -69,7 +69,7 @@ public class SignUp extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        String url = "http://34.130.14.116:3010/signup";
+        String url = "http://10.0.2.2:3010/signup";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, signUpData,
                 new Response.Listener<JSONObject>() {
                     @Override

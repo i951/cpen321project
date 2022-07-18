@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".ProfilePage">
 
     <TextView
         android:id="@+id/my_profile_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:text="@string/my_profile"
         android:textColor="@color/ubc_darkblue"
@@ -21,7 +22,7 @@
         android:id="@+id/textView_displayname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:textColor="@color/ubc_darkblue"
         android:textSize="20sp" />
@@ -30,7 +31,7 @@
         android:id="@+id/textView_yearstanding"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:textColor="@color/ubc_darkblue"
         android:textSize="20sp" />
@@ -39,17 +40,25 @@
         android:id="@+id/textview_coop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:textColor="@color/ubc_darkblue"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/find_course_button"
-        android:layout_width="match_parent"
+        android:id="@+id/blocked_users_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/ubc_lightblue"
+        android:text="Blocked users" />
+
+    <Button
+        android:id="@+id/find_course_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:backgroundTint="@color/ubc_lightblue"
         android:text="Find Course" />
 

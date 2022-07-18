@@ -9,7 +9,7 @@ import com.android.volley.toolbox.Volley;
 public class BrowseCourseSingleton {
     private static BrowseCourseSingleton instance;
     private RequestQueue requestQueue;
-    private static Context ctx;
+    private Context ctx;
 
     private BrowseCourseSingleton(Context context) {
         ctx = context;

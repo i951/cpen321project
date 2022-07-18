@@ -145,7 +145,7 @@ public class CreateProfile extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        String url = "http://34.130.14.116:3010/createprofile";
+        String url = "http://10.0.2.2:3010/createprofile";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, newprofile,
                 new Response.Listener<JSONObject>() {
                     @Override

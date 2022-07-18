@@ -72,8 +72,8 @@ module.exports = {
         const { senderID, receiverID } = req.params
         console.log("chatEngine: getPrivateConversationByUserIDs: " + senderID + " -> " + receiverID)
 
-        let senderName = await userStore.getDisplayNamebyUserID(senderID);
-        let receiverName = await userStore.getDisplayNamebyUserID(receiverID);
+        let senderName = await userStore.getDisplayNameByUserIDfromDB(senderID);
+        let receiverName = await userStore.getDisplayNameByUserIDfromDB(receiverID);
         console.log("senderName: " + senderName)
         console.log("receiverName: " + receiverName)
 

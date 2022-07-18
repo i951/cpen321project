@@ -49,7 +49,7 @@ public class ViewOtherProfile extends AppCompatActivity {
         otherYearTV = findViewById(R.id.other_year_standing);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String urlOther = "http://34.130.14.116:3010/getuserprofile/"+userID;
+        String urlOther = "http://10.0.2.2:3010/getuserprofile/"+userID;
 
         // Initialize a new JsonArrayRequest instance
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, urlOther,
@@ -67,7 +67,7 @@ public class ViewOtherProfile extends AppCompatActivity {
                             otherdisplayname = student.getString("displayName");
                             String othercoopstatus = student.getString("coopStatus");
                             String otheryearstanding = student.getString("yearStanding");
-                            JSONArray blockedUsersJSONArray= student.getJSONArray("blockedUser");
+                            JSONArray blockedUsersJSONArray= student.getJSONArray("blockedUsers");
                             // check if this other user has blocked the current user
                             for (int i = 0; i < blockedUsersJSONArray.length(); i++) {
                                 if (blockedUsersJSONArray.getString(i).equals(currentUserID)) {
@@ -132,7 +132,7 @@ public class ViewOtherProfile extends AppCompatActivity {
                     Toast.makeText(ViewOtherProfile.this, "You cannot block yourself",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    String urlCurrentUser = "http://34.130.14.116:3010/getuserprofile/"+currentUserID;
+                    String urlCurrentUser = "http://10.0.2.2:3010/getuserprofile/"+currentUserID;
 
                     JsonArrayRequest jsonArrayRequest2 =
                             new JsonArrayRequest(Request.Method.GET, urlCurrentUser,null,
@@ -143,7 +143,7 @@ public class ViewOtherProfile extends AppCompatActivity {
                                                 JSONObject student = response.getJSONObject(0);
 
                                                 JSONArray blockedUsers =
-                                                        student.getJSONArray("blockedUser");
+                                                        student.getJSONArray("blockedUsers");
 
                                                 // check current user already blocked the other user
                                                 for (int i = 0; i < blockedUsers.length(); i++) {
@@ -182,7 +182,7 @@ public class ViewOtherProfile extends AppCompatActivity {
     }
 
     private void makeBlockUserRequest(String currentUserID, String userID, RequestQueue requestQueue) {
-        String url = "http://34.130.14.116:3010/block";
+        String url = "http://10.0.2.2:3010/block";
         JSONObject blockObj = new JSONObject();
         try {
             //input your API parameters
